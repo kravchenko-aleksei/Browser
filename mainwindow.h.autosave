@@ -24,6 +24,8 @@ private slots:
 
     void on_commandLinkButton_clicked();
 
+    void on_actionClear_bookmarks_triggered();
+    
 private:
     Ui::MainWindow *ui;
 };

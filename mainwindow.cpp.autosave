@@ -43,3 +43,8 @@ void MainWindow::on_commandLinkButton_clicked()
 {
      Application::getBookmarks().add(ui->webView->url().toString(), ui->webView->title());
 }
+
+void MainWindow::on_actionClear_bookmarks_triggered()
+{
+    
+}
