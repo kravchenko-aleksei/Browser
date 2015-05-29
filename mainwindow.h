@@ -26,6 +26,10 @@ private slots:
 
     void on_saveToBookmarksButton_clicked();
 
+    void on_actionClear_history_triggered();
+
+    void on_webView_loadFinished(bool arg1);
+
 private:
     Ui::MainWindow *ui;
 };

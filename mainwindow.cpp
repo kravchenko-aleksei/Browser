@@ -47,3 +47,15 @@ void MainWindow::on_saveToBookmarksButton_clicked()
 {
     Application::getBookmarks().add(ui->webView->url().toString(), ui->webView->title());
 }
+
+void MainWindow::on_actionClear_history_triggered()
+{
+    Application::getHistory().clear();
+}
+
+void MainWindow::on_webView_loadFinished(bool success)
+{
+    if (success) {
+        Application::getHistory().add(WebPageInfo(ui->webView->url().toString(), ui->webView->title()));
+    }
+}

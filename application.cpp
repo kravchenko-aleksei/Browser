@@ -5,6 +5,7 @@
 
 BookmarksKeeper Application::bookmarks;
 MainWindow* Application::window;
+History Application::history;
 
 Application::Application()
 {
@@ -14,6 +15,11 @@ Application::Application()
 BookmarksKeeper &Application::getBookmarks()
 {
     return bookmarks;
+}
+
+History &Application::getHistory()
+{
+    return history;
 }
 
 
