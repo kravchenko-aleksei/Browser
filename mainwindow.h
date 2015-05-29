@@ -22,7 +22,9 @@ private slots:
     void updateUrlInBar(QUrl);
     void goToUrl();
 
-    void on_commandLinkButton_clicked();
+    void on_actionClear_bookmarks_triggered();
+
+    void on_saveToBookmarksButton_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -38,8 +38,12 @@ void MainWindow::goToUrl()
     ui->webView->setUrl( urlToGoTo );
 }
 
-
-void MainWindow::on_commandLinkButton_clicked()
+void MainWindow::on_actionClear_bookmarks_triggered()
 {
-     Application::getBookmarks().add(ui->webView->url().toString(), ui->webView->title());
+    Application::getBookmarks().clear();
+}
+
+void MainWindow::on_saveToBookmarksButton_clicked()
+{
+    Application::getBookmarks().add(ui->webView->url().toString(), ui->webView->title());
 }

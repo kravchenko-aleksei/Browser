@@ -115,7 +115,15 @@
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <addaction name="actionClear_bookmarks"/>
+    <addaction name="actionClear_history"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuTools"/>
   </widget>
   <action name="actionQuit">
    <property name="text">
@@ -140,6 +148,16 @@
   <action name="actionForward">
    <property name="text">
     <string>&amp;Forward</string>
+   </property>
+  </action>
+  <action name="actionClear_bookmarks">
+   <property name="text">
+    <string>Clear bookmarks</string>
+   </property>
+  </action>
+  <action name="actionClear_history">
+   <property name="text">
+    <string>Clear history</string>
    </property>
   </action>
  </widget>

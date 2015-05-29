@@ -12,6 +12,7 @@ public:
     BookmarksKeeper();
     void add(QString url, QString name);
     std::vector<WebPageInfo> getAll();
+    void clear();
 private:
     std::vector<WebPageInfo> bookmarks;
 };

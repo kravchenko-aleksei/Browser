@@ -26,6 +26,15 @@ BookmarksKeeper::BookmarksKeeper()
     file.close();
 }
 
+void BookmarksKeeper::clear() {
+    bookmarks.clear();
+    QFile file;
+    file.setFileName(BOOKMARKSFILENAME);
+    file.open(QIODevice::WriteOnly | QIODevice::Truncate);
+    file.close();
+    Application::warn("Bookmarks cleared");
+}
+
 void BookmarksKeeper::add(QString url, QString name)
 {
     for (auto& bookmark : bookmarks) {
