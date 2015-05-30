@@ -29,6 +29,12 @@ private slots:
 
     void on_deleteAllButton_clicked();
 
+    void on_applyFilterButton_clicked();
+
+    void on_removeFilterButton_clicked();
+
+    void on_filterEdit_textChanged(const QString &arg1);
+
 private:
     std::vector<WebPageInfo> pages;
     Ui::UrlChooseDialog *ui;

@@ -10,6 +10,7 @@ UrlChooseDialog::UrlChooseDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     model = new QStringListModel(this);
+    connect(ui->filterEdit, SIGNAL(returnPressed()), this, SLOT(on_applyFilterButton_clicked()));
 }
 
 UrlChooseDialog::~UrlChooseDialog()
@@ -46,15 +47,24 @@ void UrlChooseDialog::on_okButton_clicked()
 {
     //goToPage();
     int row = ui->listView->currentIndex().row();
-    /*QModelIndex index = model->index(row);
-    QVariant page = model->data(index, 2).toString(); //получает страницу из модели
-    */
-    qDebug() << row;
+
+
+    /*qDebug() << row;
     if (pages.size() > row) {
         Application::navigateTo(pages[row]);
         qDebug() << "Navigating to " << pages[row].getName();
-    }
+    }*/
 
+    QModelIndex index = model->index(row);
+    QString pageNameAndUrl = model->data(index, 2).toString();
+    for (auto& page : pages) {
+        if (page.getUrl() + " " + page.getName() == pageNameAndUrl) {
+            Application::navigateTo(page);
+            qDebug() << "Navigating to " << page.getName();
+            close();
+            return;
+        }
+    }
     close();
 }
 
@@ -74,4 +84,27 @@ void UrlChooseDialog::on_deleteButton_clicked()
 void UrlChooseDialog::on_deleteAllButton_clicked()
 {
     Application::getViewedPagesKeeper().clear();
+}
+
+void UrlChooseDialog::on_applyFilterButton_clicked()
+{
+    list.clear();
+    for (auto& page : pages) {
+        if ((page.getUrl() + " " + page.getName()).contains(ui->filterEdit->text())) {
+            list.append(page.getUrl() + " " + page.getName());
+        }
+    }
+    model->setStringList(list);
+}
+
+void UrlChooseDialog::on_removeFilterButton_clicked()
+{
+    ui->filterEdit->setText("");
+}
+
+void UrlChooseDialog::on_filterEdit_textChanged(const QString &text)
+{
+    //ignore warning
+    text;
+    on_applyFilterButton_clicked();
 }
