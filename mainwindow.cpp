@@ -64,6 +64,7 @@ void MainWindow::on_webView_loadFinished(bool success)
     if (success) {
         Application::getHistory().add(WebPageInfo(ui->webView->url().toString(), ui->webView->title()));
     }
+    ui->progressBar->setVisible(false);
 }
 
 void MainWindow::on_refreshButton_clicked()
@@ -89,4 +90,14 @@ void MainWindow::on_actionHistory_triggered()
 void MainWindow::on_actionSettings_triggered()
 {
     Application::viewSettings();
+}
+
+void MainWindow::on_webView_loadProgress(int progress)
+{
+    ui->progressBar->setValue(progress);
+}
+
+void MainWindow::on_webView_loadStarted()
+{
+    ui->progressBar->setVisible(true);
 }

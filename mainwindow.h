@@ -42,6 +42,10 @@ private slots:
 
     void on_actionSettings_triggered();
 
+    void on_webView_loadProgress(int progress);
+
+    void on_webView_loadStarted();
+
 private:
     Ui::MainWindow *ui;
 };
