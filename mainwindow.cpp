@@ -85,3 +85,8 @@ void MainWindow::on_actionHistory_triggered()
 {
     Application::viewHistory();
 }
+
+void MainWindow::on_actionSettings_triggered()
+{
+    Application::viewSettings();
+}

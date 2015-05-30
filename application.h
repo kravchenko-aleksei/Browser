@@ -11,14 +11,17 @@ public:
     static BookmarksKeeper& getBookmarks();
     static History& getHistory();
     static void warn(QString message);
+    static void warn(QString message, QWidget *parent);
     static void setMainWindow(MainWindow* _window);
     static void navigateTo(WebPageInfo page);
     static void viewBookmarks();
     static void viewHistory();
+    static void viewSettings();
     static PagesKeeper& getViewedPagesKeeper();
 private:
     enum CurrentlyViewedPages {BOOKMARKS, HISTORY};
     static CurrentlyViewedPages currentlyViewedPages;
+
     static History history;
     static MainWindow* window;
     static BookmarksKeeper bookmarks;

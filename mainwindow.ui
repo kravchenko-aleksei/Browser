@@ -128,6 +128,7 @@
     </property>
     <addaction name="actionClear_bookmarks"/>
     <addaction name="actionClear_history"/>
+    <addaction name="actionSettings"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -183,6 +184,11 @@
   <action name="actionHistory">
    <property name="text">
     <string>History</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="text">
+    <string>Settings</string>
    </property>
   </action>
  </widget>

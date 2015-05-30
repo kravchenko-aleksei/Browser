@@ -40,6 +40,8 @@ private slots:
 
     void on_actionHistory_triggered();
 
+    void on_actionSettings_triggered();
+
 private:
     Ui::MainWindow *ui;
 };

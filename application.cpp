@@ -2,7 +2,7 @@
 #include "bookmarks.h"
 #include <QMessageBox>
 #include "urlchoosedialog.h"
-
+#include "settingsdialog.h"
 
 BookmarksKeeper Application::bookmarks;
 MainWindow* Application::window;
@@ -32,6 +32,11 @@ void Application::warn(QString message)
     QMessageBox::information(window, "WARNING", message, "Ok");
 }
 
+void Application::warn(QString message, QWidget* parent)
+{
+    QMessageBox::information(parent, "WARNING", message, "Ok");
+}
+
 
 
 void Application::setMainWindow(MainWindow *_window)
@@ -58,6 +63,13 @@ void Application::viewHistory()
     currentlyViewedPages = HISTORY;
     UrlChooseDialog w;
     w.setModel(history.getAll());
+    w.exec();
+}
+
+void Application::viewSettings()
+{
+    SettingsDialog w;
+    w.setValues(history.getMaxPages());
     w.exec();
 }
 
