@@ -50,6 +50,13 @@
        </widget>
       </item>
       <item>
+       <widget class="QCommandLinkButton" name="refreshButton">
+        <property name="text">
+         <string>Refresh</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QCommandLinkButton" name="backButton">
         <property name="text">
          <string>Back</string>
@@ -122,7 +129,15 @@
     <addaction name="actionClear_bookmarks"/>
     <addaction name="actionClear_history"/>
    </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <addaction name="actionBookmarks"/>
+    <addaction name="actionHistory"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuView"/>
    <addaction name="menuTools"/>
   </widget>
   <action name="actionQuit">
@@ -158,6 +173,16 @@
   <action name="actionClear_history">
    <property name="text">
     <string>Clear history</string>
+   </property>
+  </action>
+  <action name="actionBookmarks">
+   <property name="text">
+    <string>Bookmarks</string>
+   </property>
+  </action>
+  <action name="actionHistory">
+   <property name="text">
+    <string>History</string>
    </property>
   </action>
  </widget>

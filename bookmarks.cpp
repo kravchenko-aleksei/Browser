@@ -7,65 +7,20 @@
 #define BOOKMARKSFILENAME "bookmarks"
 
 
-BookmarksKeeper::BookmarksKeeper()
+BookmarksKeeper::BookmarksKeeper() : PagesKeeper(BOOKMARKSFILENAME)
 {
-    QFile file;
-    file.setFileName(BOOKMARKSFILENAME);
-    bool success = file.open(QIODevice::ReadOnly | QIODevice::Text);
-    if (!success) {
-        Application::warn("Error loading bookmarks");
-    }
-    QTextStream stream(&file);
-    while(!stream.atEnd()){
-        QString url = stream.readLine();
-        QString name = stream.readLine();
-        WebPageInfo bookmark(url, name);
-        bookmarks.push_back(bookmark);
-    }
-    qDebug() << "Read " + QString::number(bookmarks.size()) + " bookmarks";
-    file.close();
 }
 
-void BookmarksKeeper::clear() {
-    bookmarks.clear();
-    QFile file;
-    file.setFileName(BOOKMARKSFILENAME);
-    file.open(QIODevice::WriteOnly | QIODevice::Truncate);
-    file.close();
-    Application::warn("Bookmarks cleared");
-}
 
-void BookmarksKeeper::add(QString url, QString name)
+
+void BookmarksKeeper::add(WebPageInfo page)
 {
-    for (auto& bookmark : bookmarks) {
-        if (bookmark.getUrl() == url) {
+    for (auto& bookmark : pages) {
+        if (bookmark.getUrl() == page.getUrl()) {
             Application::warn("This bookmark already exists");
             return;
         }
     }
-    WebPageInfo info(url, name);
-    bookmarks.push_back(info);
-
-    QFile file;
-    file.setFileName(BOOKMARKSFILENAME);
-
-    bool success = file.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text);
-    if (!success) {
-        Application::warn("ERROR openning file");
-    }
-    else {
-        qDebug() << "successfully opened file";
-    }
-
-    QTextStream stream(&file);
-    stream << url << "\n";
-    stream << name << "\n";
-
-    file.close();
-}
-
-std::vector<WebPageInfo> BookmarksKeeper::getAll()
-{
-    return bookmarks;
+    writeToFile(page);
 }
 

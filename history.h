@@ -1,18 +1,16 @@
 #ifndef HISTORY_H
 #define HISTORY_H
 #include "webpageinfo.h"
-#include <vector>
+#include "pageskeeper.h"
 
 
-class History
+
+class History : public PagesKeeper
 {
 public:
     History();
-    void add(WebPageInfo page);
-    void clear();
+    virtual void add(WebPageInfo page);
 private:
-    void rewriteAll();
-    std::vector<WebPageInfo> visitedPages;
 };
 
 #endif // HISTORY_H

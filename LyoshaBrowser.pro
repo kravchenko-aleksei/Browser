@@ -19,14 +19,16 @@ SOURCES += main.cpp\
     application.cpp \
     history.cpp \
     webpageinfo.cpp \
-    urlchoosedialog.cpp
+    urlchoosedialog.cpp \
+    pageskeeper.cpp
 
 HEADERS  += mainwindow.h \
     bookmarks.h \
     application.h \
     history.h \
     webpageinfo.h \
-    urlchoosedialog.h
+    urlchoosedialog.h \
+    pageskeeper.h
 
 FORMS    += mainwindow.ui \
     urlchoosedialog.ui

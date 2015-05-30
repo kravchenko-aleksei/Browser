@@ -24,6 +24,12 @@ void MainWindow::updateUrlInBar(QUrl url)
     ui->urlBar->setText(url.toString());
 }
 
+void MainWindow::goToUrl(QString url)
+{
+    ui->webView->setUrl(url);
+    updateUrlInBar(url);
+}
+
 void MainWindow::goToUrl()
 {
     QString urlToGoTo = ui->urlBar->text();
@@ -45,7 +51,7 @@ void MainWindow::on_actionClear_bookmarks_triggered()
 
 void MainWindow::on_saveToBookmarksButton_clicked()
 {
-    Application::getBookmarks().add(ui->webView->url().toString(), ui->webView->title());
+    Application::getBookmarks().add({ui->webView->url().toString(), ui->webView->title()});
 }
 
 void MainWindow::on_actionClear_history_triggered()
@@ -58,4 +64,24 @@ void MainWindow::on_webView_loadFinished(bool success)
     if (success) {
         Application::getHistory().add(WebPageInfo(ui->webView->url().toString(), ui->webView->title()));
     }
+}
+
+void MainWindow::on_refreshButton_clicked()
+{
+    ui->webView->reload();
+}
+
+void MainWindow::on_viewBookmarksButton_clicked()
+{
+    Application::viewBookmarks();
+}
+
+void MainWindow::on_actionBookmarks_triggered()
+{
+    Application::viewBookmarks();
+}
+
+void MainWindow::on_actionHistory_triggered()
+{
+    Application::viewHistory();
 }

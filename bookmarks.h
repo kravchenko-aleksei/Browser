@@ -3,18 +3,15 @@
 #ifndef BOOKMARKS_H
 #define BOOKMARKS_H
 #include <QString>
-#include <vector>
-#include "webpageinfo.h"
+#include "pageskeeper.h"
 
-class BookmarksKeeper
+
+class BookmarksKeeper : public PagesKeeper
 {
 public:
     BookmarksKeeper();
-    void add(QString url, QString name);
-    std::vector<WebPageInfo> getAll();
-    void clear();
+    virtual void add(WebPageInfo page);
 private:
-    std::vector<WebPageInfo> bookmarks;
 };
 
 #endif // BOOKMARKS_H

@@ -12,7 +12,13 @@ public:
     static History& getHistory();
     static void warn(QString message);
     static void setMainWindow(MainWindow* _window);
+    static void navigateTo(WebPageInfo page);
+    static void viewBookmarks();
+    static void viewHistory();
+    static PagesKeeper& getViewedPagesKeeper();
 private:
+    enum CurrentlyViewedPages {BOOKMARKS, HISTORY};
+    static CurrentlyViewedPages currentlyViewedPages;
     static History history;
     static MainWindow* window;
     static BookmarksKeeper bookmarks;
