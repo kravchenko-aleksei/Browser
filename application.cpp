@@ -3,7 +3,7 @@
 #include <QMessageBox>
 #include "urlchoosedialog.h"
 #include "settingsdialog.h"
-
+#include <QDebug>
 BookmarksKeeper Application::bookmarks;
 MainWindow* Application::window;
 History Application::history;
@@ -48,6 +48,25 @@ void Application::setMainWindow(MainWindow *_window)
 void Application::navigateTo(WebPageInfo page)
 {
     window->goToUrl(page.getUrl());
+}
+
+void Application::restoreSession()
+{
+    if (history.getAll().size() <= 1) {
+        navigateTo(WebPageInfo("http://fksis.bsuir.by", nullptr));
+        qDebug() << "History is empty, loading default page";
+    }
+    int reply;
+    reply = QMessageBox::question(nullptr, "Session restore", "Restore previous session?"
+                                  , QMessageBox::Yes, QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        qDebug() << "Restoring session";
+        navigateTo(history.getAll()[history.getAll().size() - 2]);
+    }
+    else {
+        qDebug() << "Loading default page";
+        navigateTo(WebPageInfo("http://fksis.bsuir.by", nullptr));
+    }
 }
 
 void Application::viewBookmarks()

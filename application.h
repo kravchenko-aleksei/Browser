@@ -14,6 +14,7 @@ public:
     static void warn(QString message, QWidget *parent);
     static void setMainWindow(MainWindow* _window);
     static void navigateTo(WebPageInfo page);
+    static void restoreSession();
     static void viewBookmarks();
     static void viewHistory();
     static void viewSettings();
