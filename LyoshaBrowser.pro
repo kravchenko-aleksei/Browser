@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     webpageinfo.cpp \
     urlchoosedialog.cpp \
     pageskeeper.cpp \
-    settingsdialog.cpp
+    settingsdialog.cpp \
+    startpage.cpp
 
 HEADERS  += mainwindow.h \
     bookmarks.h \
@@ -30,7 +31,8 @@ HEADERS  += mainwindow.h \
     webpageinfo.h \
     urlchoosedialog.h \
     pageskeeper.h \
-    settingsdialog.h
+    settingsdialog.h \
+    startpage.h
 
 FORMS    += mainwindow.ui \
     urlchoosedialog.ui \

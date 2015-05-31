@@ -4,6 +4,8 @@
 #include "urlchoosedialog.h"
 #include "settingsdialog.h"
 #include <QDebug>
+
+StartPage Application::startPage;
 BookmarksKeeper Application::bookmarks;
 MainWindow* Application::window;
 History Application::history;
@@ -24,6 +26,11 @@ BookmarksKeeper &Application::getBookmarks()
 History &Application::getHistory()
 {
     return history;
+}
+
+StartPage &Application::getStartPage()
+{
+    return startPage;
 }
 
 
@@ -53,7 +60,7 @@ void Application::navigateTo(WebPageInfo page)
 void Application::restoreSession()
 {
     if (history.getAll().size() <= 1) {
-        navigateTo(WebPageInfo("http://fksis.bsuir.by", nullptr));
+        navigateTo(WebPageInfo(startPage.get(), nullptr));
         qDebug() << "History is empty, loading default page";
     }
     int reply;
@@ -65,7 +72,7 @@ void Application::restoreSession()
     }
     else {
         qDebug() << "Loading default page";
-        navigateTo(WebPageInfo("http://fksis.bsuir.by", nullptr));
+        navigateTo(WebPageInfo(startPage.get(), nullptr));
     }
 }
 
@@ -88,7 +95,7 @@ void Application::viewHistory()
 void Application::viewSettings()
 {
     SettingsDialog w;
-    w.setValues(history.getMaxPages());
+    w.setValues(history.getMaxPages(), startPage.get());
     w.exec();
 }
 

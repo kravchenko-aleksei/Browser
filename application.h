@@ -3,6 +3,7 @@
 #include "bookmarks.h"
 #include "mainwindow.h"
 #include "history.h"
+#include "startpage.h"
 
 class Application
 {
@@ -10,6 +11,7 @@ public:
     Application();
     static BookmarksKeeper& getBookmarks();
     static History& getHistory();
+    static StartPage& getStartPage();
     static void warn(QString message);
     static void warn(QString message, QWidget *parent);
     static void setMainWindow(MainWindow* _window);
@@ -22,7 +24,7 @@ public:
 private:
     enum CurrentlyViewedPages {BOOKMARKS, HISTORY};
     static CurrentlyViewedPages currentlyViewedPages;
-
+    static StartPage startPage;
     static History history;
     static MainWindow* window;
     static BookmarksKeeper bookmarks;

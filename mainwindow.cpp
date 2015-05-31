@@ -26,22 +26,18 @@ void MainWindow::updateUrlInBar(QUrl url)
 
 void MainWindow::goToUrl(QString url)
 {
+    //If user forgot http:// - stick it on
+    if (!(url.startsWith("http://") || url.startsWith("https://"))) {
+        url.prepend("http://");
+        updateUrlInBar(url);
+    }
     ui->webView->setUrl(url);
-    updateUrlInBar(url);
 }
 
 void MainWindow::goToUrl()
 {
     QString urlToGoTo = ui->urlBar->text();
-
-    //If user forgot http:// - stick it on
-    if (! (urlToGoTo.startsWith("http://") || urlToGoTo.startsWith("https://")) )
-    {
-        urlToGoTo.prepend("http://");
-        ui->urlBar->setText( urlToGoTo );
-    }
-
-    ui->webView->setUrl( urlToGoTo );
+    goToUrl(urlToGoTo);
 }
 
 void MainWindow::on_actionClear_bookmarks_triggered()

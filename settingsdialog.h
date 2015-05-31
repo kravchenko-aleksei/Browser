@@ -14,7 +14,7 @@ class SettingsDialog : public QDialog
 public:
     explicit SettingsDialog(QWidget *parent = 0);
     ~SettingsDialog();
-    void setValues(size_t historyEntries);
+    void setValues(size_t historyEntries, QString startPage);
 private slots:
     void on_cancelButton_clicked();
 
