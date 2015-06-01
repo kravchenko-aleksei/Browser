@@ -59,7 +59,7 @@ void Application::navigateTo(WebPageInfo page)
 
 void Application::restoreSession()
 {
-    if (history.getAll().size() <= 1) {
+    if (history.getAll().size() < 1) {
         navigateTo(WebPageInfo(startPage.get(), nullptr));
         qDebug() << "History is empty, loading default page";
     }
@@ -68,7 +68,7 @@ void Application::restoreSession()
                                   , QMessageBox::Yes, QMessageBox::No);
     if (reply == QMessageBox::Yes) {
         qDebug() << "Restoring session";
-        navigateTo(history.getAll()[history.getAll().size() - 2]);
+        navigateTo(history.getAll()[history.getAll().size() - 1]);
     }
     else {
         qDebug() << "Loading default page";
